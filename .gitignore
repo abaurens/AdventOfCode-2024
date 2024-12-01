@@ -3,6 +3,7 @@
 *.d
 
 # Compiled Object files
+build/
 *.slo
 *.lo
 *.o
@@ -28,7 +29,11 @@
 *.lib
 
 # Executables
+bin/
 *.exe
 *.out
 *.app
 
+# Visual studio
+.vs/
+*.sln
