@@ -37,3 +37,5 @@ bin/
 # Visual studio
 .vs/
 *.sln
+*.vcxproj
+*.vcxproj.*

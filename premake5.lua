@@ -56,3 +56,4 @@ group "Dependencies"
 
 group ""
   include("Day 01")
+  include("Day 02")

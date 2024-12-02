@@ -45,7 +45,7 @@ static size_t count_occurrences(const list_type &lst, elem_type elem)
 {
   size_t i = binary_search(lst, elem);
 
-  if (lst[i] != elem)
+  if (i >= lst.size() || lst[i] != elem)
     return 0;
 
   size_t count = 1;
@@ -97,27 +97,37 @@ int main()
   list_type list_b;
   list_type results;
 
-  load_lists("assets/input.txt", list_a, list_b);
-  results.resize(list_a.size());
+  try
+  {
+    load_lists("assets/input.txt", list_a, list_b);
+    results.resize(list_a.size());
 
-  // Compute distance
-  std::transform(
-    list_a.begin(), list_a.end(),
-    list_b.begin(),
-    results.begin(),
-    [](elem_type &a, elem_type &b) { return std::abs(a - b); }
-  );
-  const int distance = std::reduce(results.cbegin(), results.cend());
+    // Compute distance
+    std::transform(
+      list_a.begin(), list_a.end(),
+      list_b.begin(),
+      results.begin(),
+      [](elem_type &a, elem_type &b) { return std::abs(a - b); }
+    );
+    const int distance = std::reduce(results.cbegin(), results.cend());
 
-  // Compute similarity
-  std::transform(
-    list_a.begin(), list_a.end(),
-    results.begin(),
-    [&list_b](elem_type &a) { return a * (int)count_occurrences(list_b, a); }
-  );
-  const int similarity = std::reduce(results.cbegin(), results.cend());
+    // Compute similarity
+    std::transform(
+      list_a.begin(), list_a.end(),
+      results.begin(),
+      [&list_b](elem_type &a) { return a * (int)count_occurrences(list_b, a); }
+    );
+    const int similarity = std::reduce(results.cbegin(), results.cend());
 
-  // Display results
-  std::cout << "Distance: " << distance << std::endl;
-  std::cout << "Similarity: " << similarity << std::endl;
+    // Display results
+    std::cout << "Distance:       " << distance << std::endl;
+    std::cout << "Similarity: " << similarity << std::endl;
+  }
+  catch (const std::string &err)
+  {
+    std::cerr << "error: " << err << std::endl;
+    return 1;
+  }
+
+  return 0;
 }
