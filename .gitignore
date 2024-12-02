@@ -30,9 +30,6 @@ build/
 
 # Executables
 bin/
-*.exe
-*.out
-*.app
 
 # Visual studio
 .vs/
