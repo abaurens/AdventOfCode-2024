@@ -5,7 +5,8 @@ My solution to the [Advent of Code 2024](https://adventofcode.com/2024) challeng
 - Day 01: [Historian Hysteria](https://adventofcode.com/2024/day/1)
   - [Binary search](https://en.wikipedia.org/wiki/Binary_search)
 - Day 02: [Red-Nosed Reports](https://adventofcode.com/2024/day/2)
-- Day 03:
+- Day 03: [Mull It Over](https://adventofcode.com/2024/day/3)
+  - [Regular expressions](https://en.wikipedia.org/wiki/Regular_expression)
 - Day 04:
 - Day 05:
 - Day 06:
