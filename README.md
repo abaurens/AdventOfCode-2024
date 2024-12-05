@@ -8,7 +8,7 @@ My solution to the [Advent of Code 2024](https://adventofcode.com/2024) challeng
 - Day 03: [Mull It Over](https://adventofcode.com/2024/day/3)
   - [Regular expressions](https://en.wikipedia.org/wiki/Regular_expression)
 - Day 04: [Ceres Search](https://adventofcode.com/2024/day/4)
-- Day 05:
+- Day 05: [Print Queue](https://adventofcode.com/2024/day/5)
 - Day 06:
 - Day 07:
 - Day 08:

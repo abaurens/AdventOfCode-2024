@@ -59,7 +59,7 @@ group ""
   include("Day 02")
   include("Day 03")
   include("Day 04")
-  --include("Day 05")
+  include("Day 05")
   --include("Day 06")
   --include("Day 07")
   --include("Day 08")
