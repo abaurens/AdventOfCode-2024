@@ -278,13 +278,9 @@ static bool play_turn(Map &map, Guard &guard)
   return new_cell;
 }
 
-static bool is_loop_oportunity(Map map, Guard guard, vec2 start = { -1, -1 })
+static bool is_loop_oportunity(Map map, Guard guard)
 {
   const vec2 front_pos = guard.pos + vec2(guard.dir);
-
-  // we cannot place a box on the starting cell
-  if (front_pos == start)
-    return false;
 
   // if the guard is about to leave the map
   if (!map.contains_pos(front_pos))
@@ -293,12 +289,6 @@ static bool is_loop_oportunity(Map map, Guard guard, vec2 start = { -1, -1 })
   // putting an obstacle here would change the already traced path
   if (map[front_pos] != empty_space)
     return false;
-
-  // if the guard is already about to turn right
-  //if (map[front_pos] == obscacle || front_pos == start)
-  //  return false;
-
-  //const Guard comp = guard;
 
   // place the obstacle and turn the guard right
   map[front_pos] = obscacle;
@@ -334,9 +324,8 @@ static void solve_input(const char *path)
   // while the guard is within the map bounds
   while (map[guard])
   {
-    loop_oportunities += is_loop_oportunity(map, guard);
-
     DBG(std::cout << map(guard) << std::endl);
+    loop_oportunities += is_loop_oportunity(map, guard);
     visited_spaces += play_turn(map, guard);
   }
 
