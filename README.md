@@ -9,8 +9,8 @@ My solution to the [Advent of Code 2024](https://adventofcode.com/2024) challeng
   - [Regular expressions](https://en.wikipedia.org/wiki/Regular_expression)
 - Day 04: [Ceres Search](https://adventofcode.com/2024/day/4)
 - Day 05: [Print Queue](https://adventofcode.com/2024/day/5)
-- Day 06:
-- Day 07:
+- Day 06: [Guard Gallivant](https://adventofcode.com/2024/day/6)
+- Day 07: [Bridge Repair](https://adventofcode.com/2024/day/7)
 - Day 08:
 - Day 09:
 - Day 10:
