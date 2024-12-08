@@ -3,6 +3,7 @@
 // By: Arthur Baurens
 
 #include <cerrno>
+#include <chrono>
 #include <iomanip>
 #include <fstream>
 #include <cassert>
@@ -335,9 +336,23 @@ static void solve_input(const char *path)
 
 int main()
 {
+  using clock = std::chrono::high_resolution_clock;
+  using ss = std::stringstream;
+
   try
   {
+    const clock::time_point start_time = clock::now();
     solve_input(filepath);
+    const clock::time_point end_time = clock::now();
+
+    const uint64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+    const std::string result = (ss() << "|  Problem solved in " << std::setprecision(3) << double(duration / 1000.0) << " seconds  |").str();
+    const std::string border(result.size() - 2, '-');
+
+    std::cout << '\n';
+    std::cout << '+' << border << "+\n";
+    std::cout << result << '\n';
+    std::cout << '+' << border << '+' << std::endl;
   }
   catch (std::string &err)
   {

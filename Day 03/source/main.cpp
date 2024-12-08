@@ -94,9 +94,6 @@ int main()
   {
     load_input(filepath, pairs);
 
-    //for (auto &[enabled, a, b] : pairs)
-    //  std::cout << "mul(" << std::setw(3) << a << "," << std::setw(3) << b << ") " << std::boolalpha << enabled << "\n";
-
     const int mult_sum = std::transform_reduce(
       pairs.begin(), pairs.end(),
       0,

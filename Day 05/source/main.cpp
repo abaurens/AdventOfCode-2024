@@ -5,6 +5,7 @@
 #include <set>
 #include <map>
 #include <regex>
+#include <chrono>
 #include <cerrno>
 #include <vector>
 #include <cassert>
@@ -132,8 +133,10 @@ static void pre_process_update(Update &update)
   }
 }
 
-static void solve_input(std::vector<Update> &&updates)
+static void solve_input(const char *path)
 {
+  std::vector<Update> updates = parse_input(path);
+
   int middle_sorted_sum = 0;
   int middle_unsorted_sum = 0;
 
@@ -178,9 +181,23 @@ static void solve_input(std::vector<Update> &&updates)
 
 int main()
 {
+  using clock = std::chrono::high_resolution_clock;
+  using ss = std::stringstream;
+
   try
   {
-    solve_input(parse_input(filepath));
+    const clock::time_point start_time = clock::now();
+    solve_input(filepath);
+    const clock::time_point end_time = clock::now();
+
+    const uint64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+    const std::string result = (ss() << "|  Problem solved in " << std::setprecision(3) << double(duration / 1000.0) << " seconds  |").str();
+    const std::string border(result.size() - 2, '-');
+
+    std::cout << '\n';
+    std::cout << '+' << border << "+\n";
+    std::cout << result << '\n';
+    std::cout << '+' << border << '+' << std::endl;
   }
   catch (std::string &err)
   {
