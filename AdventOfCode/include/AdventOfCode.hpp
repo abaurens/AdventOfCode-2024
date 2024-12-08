@@ -2,6 +2,8 @@
 
 #include "Output.hpp"
 
+#include "vec.hpp"
+
 #include <string>
 
 void init(void);
