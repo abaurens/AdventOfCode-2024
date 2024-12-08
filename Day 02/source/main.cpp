@@ -2,11 +2,12 @@
 // https://adventofcode.com/2024/day/2
 // By: Arthur Baurens
 
+#include "AdventOfCode.hpp"
+
 #include <cerrno>
 
 #include <vector>
 #include <fstream>
-#include <iostream>
 #include <filesystem>
 
 using Level = uint8_t;
@@ -58,7 +59,7 @@ static bool is_dampened_safe_report(const Report &report)
   return false;
 }
 
-int main()
+void solve()
 {
   if (!std::filesystem::exists(filepath))
     throw "Input file " + std::string(filepath) + " does not exist";
@@ -92,7 +93,11 @@ int main()
 
   dampenedSafeCount += safeCount;
 
-  std::cout << safeCount << " safe reports." << std::endl;
-  std::cout << dampenedSafeCount << " dampened safe reports." << std::endl;
-  return 0;
+  aoc::cout << safeCount << " safe reports." << '\n';
+  aoc::cout << dampenedSafeCount << " dampened safe reports." << '\n';
+}
+
+void init()
+{
+  aoc::register_problem(DAY_NAME);
 }

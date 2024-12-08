@@ -2,12 +2,11 @@
 // https://adventofcode.com/2024/day/6
 // By: Arthur Baurens
 
+#include "AdventOfCode.hpp"
+
 #include <cerrno>
-#include <chrono>
-#include <iomanip>
 #include <fstream>
 #include <cassert>
-#include <iostream>
 #include <filesystem>
 #include <string_view>
 
@@ -312,10 +311,10 @@ static bool is_loop_oportunity(Map map, Guard guard)
   return false;
 }
 
-static void solve_input(const char *path)
+void solve()
 {
   Guard guard;
-  Map map = load_file(path, guard);
+  Map map = load_file(filepath, guard);
 
   const vec2 start = guard.pos;
 
@@ -330,35 +329,11 @@ static void solve_input(const char *path)
     visited_spaces += play_turn(map, guard);
   }
 
-  std::cout << "The guard visited " << visited_spaces << " cells." << std::endl;
-  std::cout << "There is " << loop_oportunities << " loop oportunities." << std::endl;
+  aoc::cout << "The guard visited " << visited_spaces << " cells.\n";
+  aoc::cout << "There is " << loop_oportunities << " loop oportunities.\n";
 }
 
-int main()
+void init()
 {
-  using clock = std::chrono::high_resolution_clock;
-  using ss = std::stringstream;
-
-  try
-  {
-    const clock::time_point start_time = clock::now();
-    solve_input(filepath);
-    const clock::time_point end_time = clock::now();
-
-    const uint64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    const std::string result = (ss() << "|  Problem solved in " << std::setprecision(3) << double(duration / 1000.0) << " seconds  |").str();
-    const std::string border(result.size() - 2, '-');
-
-    std::cout << '\n';
-    std::cout << '+' << border << "+\n";
-    std::cout << result << '\n';
-    std::cout << '+' << border << '+' << std::endl;
-  }
-  catch (std::string &err)
-  {
-    std::cerr << "Error: " << err << std::endl;
-    return 1;
-  }
-
-  return 0;
+  aoc::register_problem(DAY_NAME);
 }

@@ -9,7 +9,7 @@ workspace "Advent of Code 2024"
   configurations {
     "Release",
     "Debug",
-	"Debug-NoThreads"
+    "Debug-NoThreads"
   }
 
 IncludeDir = {}
@@ -24,9 +24,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 --vectorextensions "SSE4.1"
 --vectorextensions "SSE4.2"
 
+includedirs {
+  "%{IncludeDir.AdventOfCode}",
+  "include/",
+  "source/"
+}
+
 defines {
   "_CRT_SECURE_NO_WARNINGS",
-  "_USE_MATH_DEFINES"
+  "_USE_MATH_DEFINES",
+  "PROJECT_NAME=\"%{wks.name}\"",
+  "DAY_NAME=\"%{prj.name}\""
 }
 
 workspace_files {
@@ -51,10 +59,10 @@ filter "configurations:Release"
   runtime "Release"
   optimize "On"
 
--- dependencies compiled from source
-group "Dependencies"
-
 group ""
+  include("AdventOfCode")
+
+group "Days"
   include("Day 01")
   include("Day 02")
   include("Day 03")

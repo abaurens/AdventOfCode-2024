@@ -36,6 +36,7 @@ project "Day 03"
   }
 
   links {
+    "AdventOfCode"
   }
 
   filter "system:linux"

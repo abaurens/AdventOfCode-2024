@@ -2,9 +2,10 @@
 // https://adventofcode.com/2024/day/4
 // By: Arthur Baurens
 
+#include "AdventOfCode.hpp"
+
 #include <cerrno>
 #include <fstream>
-#include <iostream>
 #include <filesystem>
 
 constexpr const char *const filepath = "assets/input.txt";
@@ -196,9 +197,9 @@ static size_t search_X(const Input &input, int pos, const char *const needle)
   return result;
 }
 
-static void solve_input(const char *path)
+void solve()
 {
-  Input input = load_file(path);
+  Input input = load_file(filepath);
 
   size_t xmas = 0;
   size_t x_mas = 0;
@@ -207,35 +208,11 @@ static void solve_input(const char *path)
     xmas  += search_str(input, i, search);
     x_mas += search_X(input, i, x_search);
   }
-  std::cout << "Found '" << search << "' " << xmas << " times\n";
-  std::cout << "Found " << x_mas << " X-" << x_search << "es\n";
+  aoc::cout << "Found '" << search << "' " << xmas << " times\n";
+  aoc::cout << "Found " << x_mas << " X-" << x_search << "es\n";
 }
 
-int main()
+void init()
 {
-  using clock = std::chrono::high_resolution_clock;
-  using ss = std::stringstream;
-
-  try
-  {
-    const clock::time_point start_time = clock::now();
-    solve_input(filepath);
-    const clock::time_point end_time = clock::now();
-
-    const uint64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    const std::string result = (ss() << "|  Problem solved in " << std::setprecision(3) << double(duration / 1000.0) << " seconds  |").str();
-    const std::string border(result.size() - 2, '-');
-
-    std::cout << '\n';
-    std::cout << '+' << border << "+\n";
-    std::cout << result << '\n';
-    std::cout << '+' << border << '+' << std::endl;
-  }
-  catch (std::string &err)
-  {
-    std::cerr << "Error: " << err << std::endl;
-    return 1;
-  }
-
-  return 0;
+  aoc::register_problem(DAY_NAME);
 }

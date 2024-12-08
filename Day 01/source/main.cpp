@@ -2,13 +2,14 @@
 // https://adventofcode.com/2024/day/1
 // By: Arthur Baurens
 
+#include "AdventOfCode.hpp"
+
 #include <cerrno>
 #include <cassert>
 
 #include <vector>
 #include <numeric>
 #include <fstream>
-#include <iostream>
 #include <algorithm>
 #include <filesystem>
 
@@ -91,43 +92,38 @@ static void load_lists(path filepath, list_type &list_a, list_type &list_b)
   assert(std::is_sorted(list_b.begin(), list_b.end()));
 }
 
-int main()
+void solve()
 {
   list_type list_a;
   list_type list_b;
   list_type results;
 
-  try
-  {
-    load_lists("assets/input.txt", list_a, list_b);
-    results.resize(list_a.size());
+  load_lists("assets/input.txt", list_a, list_b);
+  results.resize(list_a.size());
 
-    // Compute distance
-    std::transform(
-      list_a.begin(), list_a.end(),
-      list_b.begin(),
-      results.begin(),
-      [](elem_type &a, elem_type &b) { return std::abs(a - b); }
-    );
-    const int distance = std::reduce(results.cbegin(), results.cend());
+  // Compute distance
+  std::transform(
+    list_a.begin(), list_a.end(),
+    list_b.begin(),
+    results.begin(),
+    [](elem_type &a, elem_type &b) { return std::abs(a - b); }
+  );
+  const int distance = std::reduce(results.cbegin(), results.cend());
 
-    // Compute similarity
-    std::transform(
-      list_a.begin(), list_a.end(),
-      results.begin(),
-      [&list_b](elem_type &a) { return a * (int)count_occurrences(list_b, a); }
-    );
-    const int similarity = std::reduce(results.cbegin(), results.cend());
+  // Compute similarity
+  std::transform(
+    list_a.begin(), list_a.end(),
+    results.begin(),
+    [&list_b](elem_type &a) { return a * (int)count_occurrences(list_b, a); }
+  );
+  const int similarity = std::reduce(results.cbegin(), results.cend());
 
-    // Display results
-    std::cout << "Distance:       " << distance << std::endl;
-    std::cout << "Similarity: " << similarity << std::endl;
-  }
-  catch (const std::string &err)
-  {
-    std::cerr << "error: " << err << std::endl;
-    return 1;
-  }
+  // Display results
+  aoc::cout << "Distance:   " << distance << '\n';
+  aoc::cout << "Similarity: " << similarity << '\n';
+}
 
-  return 0;
+void init()
+{
+  aoc::register_problem(DAY_NAME);
 }

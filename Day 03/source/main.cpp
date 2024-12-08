@@ -2,16 +2,15 @@
 // https://adventofcode.com/2024/day/3
 // By: Arthur Baurens
 
+#include "AdventOfCode.hpp"
+
 #include <cerrno>
 
 #include <tuple>
 #include <regex>
 #include <vector>
-#include <iomanip>
 #include <fstream>
-#include <cassert>
 #include <numeric>
-#include <iostream>
 #include <filesystem>
 
 constexpr const char *const filepath = "assets/input.txt";
@@ -69,8 +68,8 @@ static void load_input(const char *path, PairList &pairs)
         enabled = false;
       else
       {
-        int a = std::stoi(match[1]);
-        int b = std::stoi(match[2]);
+        const int a = std::stoi(match[1]);
+        const int b = std::stoi(match[2]);
 
         pairs.emplace_back(enabled, a, b);
       }
@@ -86,36 +85,31 @@ static void load_input(const char *path, PairList &pairs)
   } while (!ifs.eof());
 }
 
-int main()
+void solve()
 {
   PairList pairs;
 
-  try
-  {
-    load_input(filepath, pairs);
+  load_input(filepath, pairs);
 
-    const int mult_sum = std::transform_reduce(
-      pairs.begin(), pairs.end(),
-      0,
-      std::plus{},
-      [](const Pair &p) { return std::get<1>(p) * std::get<2>(p); }
-    );
+  const int mult_sum = std::transform_reduce(
+    pairs.begin(), pairs.end(),
+    0,
+    std::plus{},
+    [](const Pair &p) { return std::get<1>(p) * std::get<2>(p); }
+  );
 
-    const int filtered_sum = std::transform_reduce(
-      pairs.begin(), pairs.end(),
-      0,
-      std::plus{},
-      [](const Pair &p) { return std::get<0>(p) ? std::get<1>(p) * std::get<2>(p) : 0; }
-    );
+  const int filtered_sum = std::transform_reduce(
+    pairs.begin(), pairs.end(),
+    0,
+    std::plus{},
+    [](const Pair &p) { return std::get<0>(p) ? std::get<1>(p) * std::get<2>(p) : 0; }
+  );
 
-    std::cout << "Complete sum : " << mult_sum << std::endl;
-    std::cout << "Filtered sum : " << filtered_sum << std::endl;
-  }
-  catch (std::string &err)
-  {
-    std::cerr << "Error: " << err << std::endl;
-    return 1;
-  }
+  aoc::cout << "Complete sum : " << mult_sum << '\n';
+  aoc::cout << "Filtered sum : " << filtered_sum << '\n';
+}
 
-  return 0;
+void init()
+{
+  aoc::register_problem(DAY_NAME);
 }

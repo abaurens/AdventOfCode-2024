@@ -2,16 +2,14 @@
 // https://adventofcode.com/2024/day/7
 // By: Arthur Baurens
 
+#include "AdventOfCode.hpp"
+
 #include <regex>
 #include <cerrno>
-#include <chrono>
 #include <fstream>
 #include <numeric>
-#include <concepts>
-#include <iostream>
 #include <algorithm>
 #include <execution>
-#include <functional>
 #include <filesystem>
 
 constexpr const char *const filepath = "assets/input.txt";
@@ -32,10 +30,11 @@ struct equation
 };
 using equation_list = std::vector<equation>;
 
+#if 0
+#include <functional>
+
 using op = std::function<num(num, num)>;
 
-
-#if 0
 template<int N>
 static num evaluate_equation(const equation &eq, uint32_t operators)
 {
@@ -140,9 +139,9 @@ static equation_list parse_input(const char *path)
   return eqs;
 }
 
-static void solve_input(const char *path)
+void solve()
 {
-  const equation_list eqs = parse_input(path);
+  const equation_list eqs = parse_input(filepath);
 
   std::vector<num> results(eqs.size(), 0);
 
@@ -164,36 +163,11 @@ static void solve_input(const char *path)
   );
   const num ternary = std::reduce(std::execution::par, results.begin(), results.end());
 
-  std::cout << "Sum of solvable (A): " << binary << '\n';
-  std::cout << "Sum of solvable (B): " << ternary << '\n';
+  aoc::cout << "Sum of solvable (A): " << binary << '\n';
+  aoc::cout << "Sum of solvable (B): " << ternary << '\n';
 }
 
-int main()
+void init()
 {
-  using clock = std::chrono::high_resolution_clock;
-  using ss = std::stringstream;
-
-  try
-  {
-    const clock::time_point start_time = clock::now();
-    solve_input(filepath);
-    const clock::time_point end_time = clock::now();
-
-    const uint64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    const std::string result = (ss() << "|  Problem solved in " << std::setprecision(3) << double(duration / 1000.0) << " seconds  |").str();
-    const std::string border(result.size() - 2, '-');
-
-    std::cout << '\n';
-    std::cout << '+' << border << "+\n";
-    std::cout << result << '\n';
-    std::cout << '+' << border << '+' << std::endl;
-  }
-  catch (std::string &err)
-  {
-    std::cerr << "Error: " << err << std::endl;
-    return 1;
-  }
-
-  return 0;
+  aoc::register_problem(DAY_NAME);
 }
-
