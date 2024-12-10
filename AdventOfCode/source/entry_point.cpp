@@ -54,7 +54,7 @@ static void display_result(uint64_t micros)
   const char *unit = "seconds";
   double time = double(micros / 1'000'000.0);
 
-  if (micros < 1000)
+  if (micros < 10'000)
   {
     unit = "milliseconds";
     time = double(micros / 1'000.0);
