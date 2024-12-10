@@ -16,10 +16,6 @@ using ss = std::stringstream;
 
 aoc::Output aoc::cout;
 
-// functions the user is suppose to provide
-void init(void);
-void solve_input(void);
-
 constexpr int l_margin = 1;
 constexpr int r_margin = 3;
 
@@ -53,10 +49,19 @@ static void print_left(const std::string &str, size_t width)
     << "|\n";
 }
 
-static void display_result(const uint64_t duration)
+static void display_result(uint64_t micros)
 {
+  const char *unit = "seconds";
+  double time = double(micros / 1'000'000.0);
+
+  if (micros < 1000)
+  {
+    unit = "milliseconds";
+    time = double(micros / 1'000.0);
+  }
+
   const std::string HEADER  = (PROJECT_NAME " : " + aoc::ProblemName());
-  const std::string SUMMARY = (ss() << " Problem solved in " << std::setprecision(3) << double(duration / 1000.0) << " seconds ").str();
+  const std::string SUMMARY = (ss() << "Problem solved in " << std::setprecision(3) << time << ' ' << unit).str();
 
   aoc::cout.flush();
 
@@ -92,7 +97,7 @@ int main()
 
     aoc::Timer timer;
     solve();
-    display_result(timer.GetTime<std::chrono::milliseconds>());
+    display_result(timer.GetTime<std::chrono::microseconds>());
   }
   catch (std::string &err)
   {

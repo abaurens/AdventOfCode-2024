@@ -71,7 +71,7 @@ group "Days"
   include("Day 06")
   include("Day 07")
   include("Day 08")
-  --include("Day 09")
+  include("Day 09")
   --include("Day 10")
   --include("Day 11")
   --include("Day 12")
