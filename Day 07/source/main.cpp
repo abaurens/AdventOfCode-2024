@@ -4,19 +4,11 @@
 
 #include "AdventOfCode.hpp"
 
-#include <regex>
-#include <cerrno>
-#include <fstream>
-#include <numeric>
-#include <algorithm>
-#include <execution>
-#include <filesystem>
-
 constexpr const char *const filepath = "assets/input.txt";
 
 constexpr const char *const rxs = R"(([0-9]+):[ \t]+((?: ?[0-9]+)+))";
 
-using num = uint64_t;
+using num = u64;
 using num_list = std::vector<num>;
 
 struct equation
@@ -36,7 +28,7 @@ using equation_list = std::vector<equation>;
 using op = std::function<num(num, num)>;
 
 template<int N>
-static num evaluate_equation(const equation &eq, uint32_t operators)
+static num evaluate_equation(const equation &eq, u32 operators)
 {
   const op op_funcs[] = {
     /* add */ [](num a, num b) { return a + b; },
@@ -60,13 +52,13 @@ static num evaluate_equation(const equation &eq, uint32_t operators)
 template<int N>
 static bool check_equation(const equation &eq)
 {
-  uint32_t max;
+  u32 max;
   if constexpr (N == 2)
     max = 1 << (eq.operands.size() - 1);
   else
-    max = static_cast<uint32_t>(std::pow(N, eq.operands.size() - 1));
+    max = static_cast<u32>(std::pow(N, eq.operands.size() - 1));
 
-  for (uint32_t operators = 0; operators < max; ++operators)
+  for (u32 operators = 0; operators < max; ++operators)
   {
     const num res = evaluate_equation<N>(eq, operators);
     if (res == eq.target)

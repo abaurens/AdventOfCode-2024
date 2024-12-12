@@ -4,14 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <set>
-#include <cassert>
-#include <fstream>
-#include <numeric>
-#include <concepts>
-#include <iostream>
-#include <filesystem>
-
 constexpr const char *const filepath = "assets/input.txt";
 
 enum dir

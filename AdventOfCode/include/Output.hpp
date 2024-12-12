@@ -6,7 +6,7 @@
 
 namespace aoc
 {
-  class Output
+  class output
   {
     using Stream = std::stringstream;
     using LineList = std::vector<std::string>;
@@ -56,19 +56,19 @@ namespace aoc
 
   public:
     template<class T>
-    friend inline Output &operator<<(Output &s, T output)
+    friend inline output &operator<<(output &s, T output)
     {
       s.m_ss << output;
       return s;
     }
 
-    friend inline Output &operator<<(Output &s, const char *str)
+    friend inline output &operator<<(output &s, const char *str)
     {
       s.m_ss << str;
       return s;
     }
 
-    friend inline Output &operator<<(Output &s, Output &(*pf)(Output &))
+    friend inline output &operator<<(output &s, output &(*pf)(output &))
     {
       return pf(s);
     }
@@ -79,13 +79,13 @@ namespace aoc
     LineList m_lines;
   };
 
-  extern "C++" Output cout;
+  extern "C++" output cout;
 }
 
 namespace std
 {
   // insert newline and flush stream
-  inline ::aoc::Output &endl(::aoc::Output &out)
+  inline ::aoc::output &endl(::aoc::output &out)
   {
     out.put('\n');
     out.flush();

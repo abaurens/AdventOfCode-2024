@@ -4,15 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <cerrno>
-
-#include <tuple>
-#include <regex>
-#include <vector>
-#include <fstream>
-#include <numeric>
-#include <filesystem>
-
 constexpr const char *const filepath = "assets/input.txt";
 
 #define do_regex   R"(do\(\))"

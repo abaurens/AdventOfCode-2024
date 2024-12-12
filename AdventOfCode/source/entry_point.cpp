@@ -14,7 +14,7 @@
 
 using ss = std::stringstream;
 
-aoc::Output aoc::cout;
+aoc::output aoc::cout;
 
 constexpr int l_margin = 1;
 constexpr int r_margin = 3;

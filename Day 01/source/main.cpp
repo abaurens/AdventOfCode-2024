@@ -4,15 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <cerrno>
-#include <cassert>
-
-#include <vector>
-#include <numeric>
-#include <fstream>
-#include <algorithm>
-#include <filesystem>
-
 using elem_type = int;
 using list_type = std::vector<elem_type>;
 

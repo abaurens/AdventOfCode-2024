@@ -15,7 +15,7 @@ My solution to the [Advent of Code 2024](https://adventofcode.com/2024) challeng
 - Day 09: [Disk Fragmenter](https://adventofcode.com/2024/day/9)
 - Day 10: [Hoof It](https://adventofcode.com/2024/day/10)
   - [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
-- Day 11:
+- Day 11: [Plutonian Pebbles](https://adventofcode.com/2024/day/11)
 - Day 12:
 - Day 13:
 - Day 14:

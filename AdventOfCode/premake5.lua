@@ -9,10 +9,9 @@ project "AdventOfCode"
   objdir ("%{wks.location}/build/" .. outputdir .. "%{prj.name}")
 
   IncludeDir["AdventOfCode"] = "%{wks.location}/AdventOfCode/include"
-
-  -- Not using pre compiled header yet --
-  -- pchheader "pch.h"
-  -- pchsource ("src/pch.cpp")
+  
+  pchheader "AdventOfCode.hpp"
+  pchsource ("source/AdventOfCode.cpp")
 
   files {
     "premake5.lua",

@@ -4,10 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <cerrno>
-#include <fstream>
-#include <filesystem>
-
 constexpr const char *const filepath = "assets/input.txt";
 constexpr const char *const search   = "XMAS";
 constexpr const char *const x_search = search + 1;

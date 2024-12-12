@@ -4,13 +4,7 @@
 
 #include "AdventOfCode.hpp"
 
-#include <cerrno>
-
-#include <vector>
-#include <fstream>
-#include <filesystem>
-
-using Level = uint8_t;
+using Level = u8;
 
 using Report = std::vector<Level>;
 

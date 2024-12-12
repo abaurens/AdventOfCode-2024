@@ -4,13 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <deque>
-#include <cassert>
-#include <fstream>
-#include <iostream>
-#include <filesystem>
-#include <string_view>
-
 constexpr const char *const filepath = "assets/example.txt";
 
 constexpr size_t read_size = 4096;

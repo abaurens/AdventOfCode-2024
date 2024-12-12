@@ -4,16 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <set>
-#include <map>
-#include <regex>
-#include <cerrno>
-#include <vector>
-#include <cassert>
-#include <fstream>
-#include <algorithm>
-#include <filesystem>
-
 constexpr const char *const filepath = "assets/input.txt";
 
 constexpr const char *const rule_rxs = R"(^([0-9]+)\|([0-9]+)$)";

@@ -8,9 +8,8 @@ project "Day 03"
   targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
   objdir ("%{wks.location}/build/" .. outputdir .. "%{prj.name}")
 
-  -- Not using pre compiled header yet --
-  -- pchheader "pch.h"
-  -- pchsource ("src/pch.cpp")
+  pchheader "AdventOfCode.hpp"
+  pchsource ("source/pch.cpp")
 
   files {
     "premake5.lua",

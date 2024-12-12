@@ -4,14 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <map>
-#include <set>
-#include <cassert>
-#include <fstream>
-#include <iostream>
-#include <execution>
-#include <filesystem>
-
 constexpr const char *const filepath = "assets/input.txt";
 
 template <>

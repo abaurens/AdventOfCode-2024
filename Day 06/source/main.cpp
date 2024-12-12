@@ -4,12 +4,6 @@
 
 #include "AdventOfCode.hpp"
 
-#include <cerrno>
-#include <fstream>
-#include <cassert>
-#include <filesystem>
-#include <string_view>
-
 #if _DEBUG
 # define DBG(...) __VA_ARGS__
 #else
@@ -24,27 +18,6 @@ constexpr const char empty_space = '.';
 constexpr const char obscacle = '#';
 
 #define BIT(x) (1 << x)
-
-struct vec2
-{
-  int x = 0;
-  int y = 0;
-
-  bool operator==(const vec2 &other) const { return (x == other.x && y == other.y); }
-  bool operator!=(const vec2 &other) const { return (x != other.x || y != other.y); }
-
-  vec2 &operator+=(int scalar) { x += scalar;  y += scalar;  return *this; }
-  vec2 &operator+=(vec2 other) { x += other.x; y += other.y; return *this; }
-
-  vec2 &operator-=(int scalar) { x -= scalar;  y -= scalar;  return *this; }
-  vec2 &operator-=(vec2 other) { x -= other.x; y -= other.y; return *this; }
-
-  vec2 operator+(int scalar) const { return { x + scalar,  y + scalar  }; }
-  vec2 operator+(vec2 other) const { return { x + other.x, y + other.y }; }
-
-  vec2 operator-(int scalar) const { return { x - scalar,  y - scalar  }; }
-  vec2 operator-(vec2 other) const { return { x - other.x, y - other.y }; }
-};
 
 class Direction
 {
@@ -91,13 +64,13 @@ public:
 
   constexpr operator int(void) const { return static_cast<uint8_t>(m_val); }
 
-  constexpr operator vec2(void) const {
+  constexpr aoc::vec2 vec(void) const {
     switch (m_val)
     {
-      case UP:    return {  0, -1 };
-      case RIGHT: return {  1,  0 };
-      case DOWN:  return {  0,  1 };
-      case LEFT:  return { -1,  0 };
+    case UP:    return {  0, -1 };
+    case RIGHT: return {  1,  0 };
+    case DOWN:  return {  0,  1 };
+    case LEFT:  return { -1,  0 };
     }
     return { 0, 0 };
   }
@@ -144,7 +117,7 @@ private:
 
 struct Guard
 {
-  vec2 pos;
+  aoc::vec2 pos;
   Direction dir = Direction::UP;
 };
 
@@ -190,10 +163,10 @@ public:
 
   MapPrinter operator()(const Guard &guard) const { return MapPrinter(*this, guard); }
 
-  char &operator[](const vec2 &pos) { return data[pos.x + pos.y * width]; }
-  const char &operator[](const vec2 &pos) const { return data[pos.x + pos.y * width]; }
+  char &operator[](const aoc::vec2 &pos) { return data[pos.x + pos.y * width]; }
+  const char &operator[](const aoc::vec2 &pos) const { return data[pos.x + pos.y * width]; }
 
-  bool contains_pos(const vec2 &pos) const { return (pos.x >= 0 && pos.y >= 0 && pos.x < width && pos.y < height); }
+  bool contains_pos(const aoc::vec2 &pos) const { return (pos.x >= 0 && pos.y >= 0 && pos.x < width && pos.y < height); }
 
   // returns wether or not the guard is within the map's bounds
   bool operator[](const Guard &guard) const { return contains_pos(guard.pos); }
@@ -267,7 +240,7 @@ static bool play_turn(Map &map, Guard &guard)
   cell |= int(guard.dir);
 
   // get the guard's next position
-  vec2 next = guard.pos + vec2(guard.dir);
+  aoc::vec2 next = guard.pos + guard.dir.vec();
 
   // either move forward or turn right
   if (map.contains_pos(next) && map[next] == obscacle)
@@ -280,7 +253,7 @@ static bool play_turn(Map &map, Guard &guard)
 
 static bool is_loop_oportunity(Map map, Guard guard)
 {
-  const vec2 front_pos = guard.pos + vec2(guard.dir);
+  const aoc::vec2 front_pos = guard.pos + guard.dir.vec();
 
   // if the guard is about to leave the map
   if (!map.contains_pos(front_pos))
@@ -316,7 +289,7 @@ void solve()
   Guard guard;
   Map map = load_file(filepath, guard);
 
-  const vec2 start = guard.pos;
+  const aoc::vec2 start = guard.pos;
 
   int visited_spaces = 0;
   int loop_oportunities = 0;
