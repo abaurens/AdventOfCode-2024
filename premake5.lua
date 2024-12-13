@@ -44,6 +44,10 @@ workspace_files {
   ".gitignore"
 }
 
+files {
+  "utils/**.natvis"
+}
+
 filter "configurations:windows"
   defines "_WIN32"
 

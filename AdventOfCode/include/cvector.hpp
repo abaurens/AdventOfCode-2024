@@ -43,8 +43,8 @@ namespace aoc
     constexpr size_t size() const { return m_size; }
     constexpr bool empty() const { return m_size == 0; }
 
-    constexpr T *data() { return static_cast<T*>(m_data); }
-    constexpr const T *data() const { return static_cast<const T*>(m_data); }
+    constexpr T *data() { return reinterpret_cast<T*>(m_data); }
+    constexpr const T *data() const { return reinterpret_cast<const T*>(m_data); }
 
     void clear()
     {

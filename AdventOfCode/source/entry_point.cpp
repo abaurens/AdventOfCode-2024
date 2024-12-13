@@ -4,7 +4,7 @@
 
 #include "AdventOfCode.hpp"
 
-#include "Timer.hpp"
+#include "timer.hpp"
 #include "Output.hpp"
 
 #include <cerrno>
@@ -95,7 +95,7 @@ int main()
   {
     init();
 
-    aoc::Timer timer;
+    aoc::timer timer;
     solve();
     display_result(timer.GetTime<std::chrono::microseconds>());
   }

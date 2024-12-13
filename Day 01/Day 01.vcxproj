@@ -130,10 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\input.txt" />
     <None Include="premake5.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\utils\aoc.natvis" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventOfCode\AdventOfCode.vcxproj">

@@ -3,6 +3,7 @@
 #include "types.hpp"
 #include "output.hpp"
 
+#include "rect_map.hpp"
 #include "cvector.hpp"
 #include "vec.hpp"
 
@@ -61,3 +62,5 @@ using aoc::i8;
 using aoc::i16;
 using aoc::i32;
 using aoc::i64;
+
+using aoc::uint;

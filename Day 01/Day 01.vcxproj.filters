@@ -7,9 +7,15 @@
     <Filter Include="source">
       <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{169C8510-82B0-ADC1-4B32-5121B705AAF2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\pch.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -18,5 +24,10 @@
       <Filter>assets</Filter>
     </None>
     <None Include="premake5.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\utils\aoc.natvis">
+      <Filter>utils</Filter>
+    </Natvis>
   </ItemGroup>
 </Project>

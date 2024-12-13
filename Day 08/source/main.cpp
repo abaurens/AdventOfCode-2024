@@ -6,16 +6,6 @@
 
 constexpr const char *const filepath = "assets/input.txt";
 
-template <>
-struct std::less<aoc::vec2>
-{
-  constexpr bool operator()(const aoc::vec2 &a, const aoc::vec2 &b) const
-  {
-    const aoc::vec2b low = (a < b);
-    return low.x || (a.x == b.x && low.y);
-  }
-};
-
 using frequency = char;
 
 using antenaes = std::map<frequency, std::vector<aoc::vec2>>;

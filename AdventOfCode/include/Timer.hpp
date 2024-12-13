@@ -20,13 +20,13 @@ namespace aoc
   template<class T>
   constexpr bool is_duration_v = is_specialization_v<T, std::chrono::duration>;
 
-  class Timer
+  class timer
   {
     using clock = std::chrono::high_resolution_clock;
 
 
   public:
-    Timer() : start_time(clock::now()) {}
+    timer() : start_time(clock::now()) {}
 
     void reset() { start_time = clock::now(); }
 
