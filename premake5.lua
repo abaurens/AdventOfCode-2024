@@ -79,7 +79,7 @@ group "Days"
   include("Day 10")
   include("Day 11")
   include("Day 12")
-  --include("Day 13")
+  include("Day 13")
   --include("Day 14")
   --include("Day 15")
   --include("Day 16")

@@ -29,6 +29,7 @@
 #include <filesystem>
 #include <string_view>
 
+#include <limits>
 #include <iomanip>
 #include <numeric>
 #include <execution>

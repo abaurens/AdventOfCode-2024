@@ -16,8 +16,10 @@ My solution to the [Advent of Code 2024](https://adventofcode.com/2024) challeng
 - Day 10: [Hoof It](https://adventofcode.com/2024/day/10)
   - [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
 - Day 11: [Plutonian Pebbles](https://adventofcode.com/2024/day/11)
-- Day 12:
-- Day 13:
+- Day 12: [Garden Groups](https://adventofcode.com/2024/day/12)
+  - [Flood fill](https://en.wikipedia.org/wiki/Flood_fill)
+- Day 13: [Claw Contraption](https://adventofcode.com/2024/day/13)
+  - [Cramer's rule](https://en.wikipedia.org/wiki/Cramer%27s_rule)
 - Day 14:
 - Day 25:
 - Day 26:
