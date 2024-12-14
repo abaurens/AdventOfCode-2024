@@ -18,13 +18,17 @@ namespace aoc
     template<class TA, class TB>
     using add_rstp = decltype(TA(1) + TB(1)); // yeilds the result type of TA + TB
     template<class TA, class TB>
-    using sub_rstp = decltype(TA(1) - TB(1)); // yeilds the result type of TA + TB
+    using sub_rstp = decltype(TA(1) - TB(1)); // yeilds the result type of TA - TB
     template<class TA, class TB>
-    using mul_rstp = decltype(TA(1) * TB(1)); // yeilds the result type of TA + TB
+    using mul_rstp = decltype(TA(1) * TB(1)); // yeilds the result type of TA * TB
     template<class TA, class TB>
-    using div_rstp = decltype(TA(1) / TB(1)); // yeilds the result type of TA + TB
+    using div_rstp = decltype(TA(1) / TB(1)); // yeilds the result type of TA / TB
     template<class TA, class TB>
-    using mod_rstp = decltype(TA(1) % TB(1)); // yeilds the result type of TA + TB
+    using mod_rstp = decltype(TA(1) % TB(1)); // yeilds the result type of TA % TB
+
+    template<class TA, class TB>
+    using dot_rstp = add_rstp<mul_rstp<TA, TB>, mul_rstp<TA, TB>>;
+
 
   public:
     constexpr vec(T x, T y) : x(x), y(y) {}
@@ -34,6 +38,9 @@ namespace aoc
     constexpr vec(T scalar) : vec(scalar, scalar) {}
     constexpr vec() : vec(0) {}
 
+    template<class U>
+    dot_rstp<T, U> dot(vec<Comp, U> const &other) const { return x * other.x + y * other.y; }
+
 
     template<class U>
     constexpr operator vec<Comp, U>() const { return vec<Comp, U>{ U(x), U(y) }; }
@@ -41,12 +48,12 @@ namespace aoc
     // ==
     // !=
     template<class U>
-    constexpr bool operator==(vec<Comp, U> const &other) const
+    constexpr bool operator==(const vec<Comp, U> &other) const
     {
       return x == other.x && y == other.y;
     }
     template<class U>
-    constexpr bool operator!=(vec<Comp, U> const &other) const
+    constexpr bool operator!=(const vec<Comp, U> &other) const
     {
       return x != other.x || y != other.y;
     }
@@ -77,22 +84,22 @@ namespace aoc
     }
 
     template<class U>
-    constexpr bool_type operator<(vec<Comp, U> const &other) const
+    constexpr bool_type operator<(const vec<Comp, U> &other) const
     {
       return { x < other.x, y < other.y };
     }
     template<class U>
-    constexpr bool_type operator>(vec<Comp, U> const &other) const
+    constexpr bool_type operator>(const vec<Comp, U> &other) const
     {
       return { x > other.x, y > other.y };
     }
     template<class U>
-    constexpr bool_type operator<=(vec<Comp, U> const &other) const
+    constexpr bool_type operator<=(const vec<Comp, U> &other) const
     {
       return { x < other.x, y < other.y };
     }
     template<class U>
-    constexpr bool_type operator>=(vec<Comp, U> const &other) const
+    constexpr bool_type operator>=(const vec<Comp, U> &other) const
     {
       return { x >= other.x, y >= other.y };
     }
@@ -114,15 +121,15 @@ namespace aoc
     constexpr vec<Comp, mod_rstp<T, U>> operator%(U scalar) const { return { x % scalar, y % scalar }; }
 
     template<class U>
-    constexpr vec<Comp, add_rstp<T, U>> operator+(vec<Comp, U> t) const { return { x + t.x, y + t.y }; }
+    constexpr vec<Comp, add_rstp<T, U>> operator+(const vec<Comp, U> &t) const { return { x + t.x, y + t.y }; }
     template<class U>
-    constexpr vec<Comp, sub_rstp<T, U>> operator-(vec<Comp, U> t) const { return { x - t.x, y - t.y }; }
+    constexpr vec<Comp, sub_rstp<T, U>> operator-(const vec<Comp, U> &t) const { return { x - t.x, y - t.y }; }
     template<class U>
-    constexpr vec<Comp, mul_rstp<T, U>> operator*(vec<Comp, U> t) const { return { x * t.x, y * t.y }; }
+    constexpr vec<Comp, mul_rstp<T, U>> operator*(const vec<Comp, U> &t) const { return { x * t.x, y * t.y }; }
     template<class U>
-    constexpr vec<Comp, div_rstp<T, U>> operator/(vec<Comp, U> t) const { return { x / t.x, y / t.y }; }
+    constexpr vec<Comp, div_rstp<T, U>> operator/(const vec<Comp, U> &t) const { return { x / t.x, y / t.y }; }
     template<class U>
-    constexpr vec<Comp, mod_rstp<T, U>> operator%(vec<Comp, U> t) const { return { x % t.x, y % t.y }; }
+    constexpr vec<Comp, mod_rstp<T, U>> operator%(const vec<Comp, U> &t) const { return { x % t.x, y % t.y }; }
 
     // +=
     // -=
@@ -141,15 +148,15 @@ namespace aoc
     constexpr type &operator%=(U scalar) { x %= scalar; y %= scalar; return *this; }
 
     template<class U>
-    constexpr type &operator+=(vec<Comp, U> t) { x += t.x; y += t.y; return *this; }
+    constexpr type &operator+=(const vec<Comp, U> &t) { x += t.x; y += t.y; return *this; }
     template<class U>
-    constexpr type &operator-=(vec<Comp, U> t) { x -= t.x; y -= t.y; return *this; }
+    constexpr type &operator-=(const vec<Comp, U> &t) { x -= t.x; y -= t.y; return *this; }
     template<class U>
-    constexpr type &operator*=(vec<Comp, U> t) { x *= t.x; y *= t.y; return *this; }
+    constexpr type &operator*=(const vec<Comp, U> &t) { x *= t.x; y *= t.y; return *this; }
     template<class U>
-    constexpr type &operator/=(vec<Comp, U> t) { x /= t.x; y /= t.y; return *this; }
+    constexpr type &operator/=(const vec<Comp, U> &t) { x /= t.x; y /= t.y; return *this; }
     template<class U>
-    constexpr type &operator%=(vec<Comp, U> t) { x %= t.x; y %= t.y; return *this; }
+    constexpr type &operator%=(const vec<Comp, U> &t) { x %= t.x; y %= t.y; return *this; }
 
     // []
     constexpr T &operator[](int i)
