@@ -31,6 +31,7 @@ includedirs {
 }
 
 defines {
+  "_CRT_NONSTDC_NO_WARNINGS",
   "_CRT_SECURE_NO_WARNINGS",
   "_USE_MATH_DEFINES",
   "PROJECT_NAME=\"%{wks.name}\"",
@@ -48,8 +49,19 @@ files {
   "utils/**.natvis"
 }
 
-filter "configurations:windows"
-  defines "_WIN32"
+filter "system:windows"
+  defines "WINDOWS"
+
+filter "system:linux"
+  defines "LINUX"
+  defines "UNIX"
+  pic "On"
+
+filter "system:macosx"
+  defines "MACOSX"
+  defines "UNIX"
+  pic "On"
+
 
 filter "configurations:Debug-NoThreads"
   defines "SINGLE_THREADED"
@@ -80,7 +92,7 @@ group "Days"
   include("Day 11")
   include("Day 12")
   include("Day 13")
-  --include("Day 14")
+  include("Day 14")
   --include("Day 15")
   --include("Day 16")
   --include("Day 17")

@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef WINDOWS
+#include <io.h>
+#endif
+
 #include "types.hpp"
 #include "output.hpp"
 
@@ -22,6 +26,7 @@
 #include <unordered_map>
 
 #include <regex>
+#include <atomic>
 #include <string>
 #include <sstream>
 #include <fstream>

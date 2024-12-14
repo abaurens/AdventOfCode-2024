@@ -37,18 +37,3 @@ project "Day 05"
   links {
     "AdventOfCode"
   }
-
-  filter "system:linux"
-    pic "On"
-  
-  filter "system:macosx"
-    pic "On"
-
-  filter "configurations:Debug"
-    runtime "Debug"
-    symbols "On"
-    
-  filter "configurations:Release"
-    defines "NDEBUG"
-    runtime "Release"
-    optimize "On"

@@ -77,7 +77,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;PROJECT_NAME="Advent of Code 2024";DAY_NAME="Day 01";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;PROJECT_NAME="Advent of Code 2024";DAY_NAME="Day 01";WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\AdventOfCode\include;..\include;..\source;include;source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -98,7 +98,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;PROJECT_NAME="Advent of Code 2024";DAY_NAME="Day 01";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;PROJECT_NAME="Advent of Code 2024";DAY_NAME="Day 01";WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\AdventOfCode\include;..\include;..\source;include;source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -115,7 +115,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;PROJECT_NAME="Advent of Code 2024";DAY_NAME="Day 01";SINGLE_THREADED;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;PROJECT_NAME="Advent of Code 2024";DAY_NAME="Day 01";WINDOWS;SINGLE_THREADED;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\AdventOfCode\include;..\include;..\source;include;source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>

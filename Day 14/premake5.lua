@@ -1,5 +1,5 @@
--- Day 11 (project)
-project "Day 11"
+-- Day 14 (project)
+project "Day 14"
   kind "ConsoleApp"
   language "C++"
   cppdialect "C++20"

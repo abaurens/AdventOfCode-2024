@@ -20,7 +20,7 @@ My solution to the [Advent of Code 2024](https://adventofcode.com/2024) challeng
   - [Flood fill](https://en.wikipedia.org/wiki/Flood_fill)
 - Day 13: [Claw Contraption](https://adventofcode.com/2024/day/13)
   - [Cramer's rule](https://en.wikipedia.org/wiki/Cramer%27s_rule)
-- Day 14:
+- Day 14: [Restroom Redoubt](https://adventofcode.com/2024/day/14)
 - Day 25:
 - Day 26:
 - Day 27:

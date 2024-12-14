@@ -20,20 +20,25 @@ namespace aoc
   {
   public:
     rect_map() = default;
+    rect_map(size_t width, size_t height, const T &v = T())
+      : m_size(width, height), m_data(width * height, v) {}
 
     vec2s size() const { return m_size; }
     size_t width() const { return m_size.w; }
     size_t height() const { return m_size.h; }
 
-    template<class U>
-      requires std::is_integral_v<U>
-    T &operator[](vec<2, U> pos) { return m_data[pos.y * m_size.w + pos.x]; }
-    template<class U>
-      requires std::is_integral_v<U>
-    const T &operator[](vec<2, U> pos) const { return m_data[pos.y * m_size.w + pos.x]; }
+    T *data() { return m_data.data(); }
+    const T *data() const { return m_data.data(); }
 
     template<class U>
-      requires std::is_integral_v<U>
+    requires std::is_integral_v<U>
+    T &operator[](vec<2, U> pos) { return m_data[pos.x + pos.y * m_size.w]; }
+    template<class U>
+    requires std::is_integral_v<U>
+    const T &operator[](vec<2, U> pos) const { return m_data[pos.x + pos.y * m_size.w]; }
+
+    template<class U>
+    requires std::is_integral_v<U>
     bool contains(vec<2, U> pos) const { return pos.x >= 0 && pos.x < m_size.w && pos.y >= 0 && pos.y < m_size.h; }
 
     void reserve(size_t size) { m_data.reserve(size); }
