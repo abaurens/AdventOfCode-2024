@@ -28,7 +28,7 @@ struct cell
 };
 
 using map = aoc::rect_map<cell>;
-using region = std::set<aoc::vec2>;
+using region = std::unordered_set<aoc::vec2>;
 
 static map load_map(const char *path)
 {
@@ -47,7 +47,7 @@ static map load_map(const char *path)
 }
 
 template<class T>
-static void _floodfill(const aoc::rect_map<T> &map, std::set<aoc::vec2> &visited, const T &value, aoc::vec2 pos)
+static void _floodfill(const aoc::rect_map<T> &map, std::unordered_set<aoc::vec2> &visited, const T &value, aoc::vec2 pos)
 {
   if (!map.contains(pos) || visited.contains(pos))
     return;
@@ -86,7 +86,7 @@ static void _floodfill(const aoc::rect_map<T> &map, std::set<aoc::vec2> &visited
 template<class T>
 static region floodfill(const aoc::rect_map<T> &map, aoc::vec2 pos)
 {
-  std::set<aoc::vec2> visited;
+  std::unordered_set<aoc::vec2> visited;
 
   const T &start = map[pos];
   _floodfill(map, visited, start, pos);
@@ -95,7 +95,7 @@ static region floodfill(const aoc::rect_map<T> &map, aoc::vec2 pos)
 
 static std::vector<region> generate_regions(map &map)
 {
-  std::set<aoc::vec2> visited;
+  std::unordered_set<aoc::vec2> visited;
   std::vector<region> regions;
 
   for (int y = 0; y < map.height(); ++y)
@@ -152,7 +152,7 @@ static u32 region_discounted_price(const map &map, const region &region)
 
   for (direction dir = UP; dir <= LEFT; dir = direction(dir + 1))
   {
-    std::set<aoc::vec2> processed;
+    std::unordered_set<aoc::vec2> processed;
 
     for (const aoc::vec2 pos : region)
     {
